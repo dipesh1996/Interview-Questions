@@ -1,0 +1,26 @@
+public class Main
+{
+	public static void main(String[] args) {
+	    String s = "123";
+      //s = "128";
+      //s = "10";
+      //s = "256";
+        int[] dp = new int[s.length() + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 1; i < s.length(); i++) {
+            char c = s.charAt(i);
+            char p = s.charAt(i - 1);
+            if (p == '1')
+                 dp[i + 1] = dp[i - 1] + dp[i];
+            else if (p == '2') {
+                if (c < '6')
+                    dp[i + 1] = dp[i] + dp[i - 1];
+                else
+                    dp[i + 1] = dp[i];
+            } else
+                dp[i + 1] = dp[i];
+        }
+        System.out.println(dp[s.length()]);
+    }
+}
